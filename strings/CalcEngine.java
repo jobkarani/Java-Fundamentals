@@ -1,8 +1,11 @@
-// Calc engine with command-line-arguments
-// running the code on the terminal/commandline use e.g: *** java CalcEngineWithCLA.java a 20 30 *** OR *** java CalcEngineWithCLA.java d 200 50 *** 
+// Calc engine with string support
+// running the code on the terminal/commandline use e.g: *** java CalcEngine.java interactive *** // multiply ten three //  
 
-package methods;
-public class CalcEngineWithCLA{
+package strings;
+
+import java.util.Scanner;
+
+public class CalcEngine{
     public static void main( String [] args) {
         double [] leftVals = {10.0d, 20.0d, 30.0d, 40.0d};
         double [] rightVals = {5.0d, 15.0d, 25.0d, 25.0d};
@@ -17,13 +20,31 @@ public class CalcEngineWithCLA{
             for(double currentResults:results)
                 System.out.println(currentResults);
         }
+        else if(args.length == 1 && args[0].equals("interactive")){
+            executeInteractively();
+        }
         else if(args.length == 3){
             handleCommandLine(args);
         }
         else{
             System.out.println("Please provide an operation code and 2 numeric values!!");
         }
+    }
 
+    static void executeInteractively(){
+        System.out.println("Please enter an operation and two numbers: ");
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+        String[] parts = userInput.split(" ");
+        performOperation(parts);
+    }
+
+    private static void performOperation(String[] parts) {
+        char opCodes = opCodesFromString(parts[0]);
+        double leftVals = valueFromWord(parts[1]);
+        double rightVals = valueFromWord(parts[2]);
+        double results =  execute(opCodes, leftVals, rightVals);
+        System.out.println(results);
     }
 
     private static void handleCommandLine(String[] args) {
@@ -60,5 +81,22 @@ public class CalcEngineWithCLA{
                 break;
         }
         return results;
+    }
+
+    static char opCodesFromString(String operationName){
+        char opCodes = operationName.charAt(0);
+        return opCodes;
+    }
+
+    static double valueFromWord(String word){
+        String [] numberWords = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+        double value = 0d;
+        for(int index = 0; index < numberWords.length; index ++){
+            if(word.equals(numberWords[index])){
+                value = index;
+                break;
+            }
+        }
+        return value;
     }
 }
