@@ -1,11 +1,11 @@
-// Calc engine with string support and string builders
-// running the code on the terminal/commandline use e.g: *** java StringbuilderCalcEngine.java interactive *** // multiply ten three //  
+// Calc engine with string formatting
+// running the code on the terminal/commandline use e.g: *** java CalcEngineFormatStrings.java interactive *** // divide one seven //  
 
-package strings;
+package StringFormatting;
 
 import java.util.Scanner;
 
-public class StringbuilderCalcEngine{
+public class CalcEngineFormatStrings{
     public static void main( String [] args) {
         double [] leftVals = {10.0d, 20.0d, 30.0d, 40.0d};
         double [] rightVals = {5.0d, 15.0d, 25.0d, 25.0d};
@@ -49,17 +49,22 @@ public class StringbuilderCalcEngine{
 
     private static void displayResult(char opCode, double leftVals, double rightVals, double results) {
         char symbol = symbolFromOpcodes(opCode);
-        StringBuilder builder = new StringBuilder(20);
-        builder.append(leftVals);
-        builder.append(" ");
-        builder.append(symbol);
-        builder.append(" ");
-        builder.append(rightVals);
-        builder.append(" = ");
-        builder.append(results); 
+        // StringBuilder builder = new StringBuilder(20);
+        // builder.append(leftVals);
+        // builder.append(" ");
+        // builder.append(symbol);
+        // builder.append(" ");
+        // builder.append(rightVals);
+        // builder.append(" = ");
+        // builder.append(results); 
+        // String output = builder.toString();
 
-        String output = builder.toString();
+        String output = String.format("%f %c %f = %f", leftVals, symbol, rightVals, results);
         System.out.println(output);
+
+        // using the decimal flag (3 dp)
+        String outputs = String.format("%.3f %c %.3f = %.3f", leftVals, symbol, rightVals, results);
+        System.out.println(outputs);
     }
 
     public static char symbolFromOpcodes(char opCodes){
@@ -127,4 +132,5 @@ public class StringbuilderCalcEngine{
         }
         return value;
     }
+
 }

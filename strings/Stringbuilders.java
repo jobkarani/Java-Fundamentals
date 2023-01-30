@@ -12,7 +12,7 @@ public class Stringbuilders{
         String message = sb.toString(); 
         System.out.println(message); // "I flew to Florida on flight #175"
 
-        String time = "9:00";
+        String time = "9:00 ";
         int pos = sb.indexOf(" on");
         sb.insert(pos, " at");
         sb.insert(pos + 4, time);

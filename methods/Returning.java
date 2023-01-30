@@ -8,7 +8,7 @@ public class Returning{
     static double calcurateInterest(double amt, double rate, int years){
         // double interest = amt * rate * years;
         // return interest;
-
+        // OR
         return amt * rate * years;
     }
 
